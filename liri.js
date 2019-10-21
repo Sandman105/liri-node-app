@@ -4,9 +4,9 @@
 require("dotenv").config();
 
 var keys = require("./keys.js");
-
-//Seeing console.log "this is loaded" when running node liri.js
-//var spotify = new Spotify(keys.spotify);
+var Spotify = require("node-spotify-api");
+//Seeing console.log "this is loaded" when running node liri.js. But had to comment this out since if caused an error.
+var spotify = new Spotify(keys.spotify);
 
 var axios = require("axios");
 
@@ -53,15 +53,25 @@ function concert() {
     
     axios.get(queryUrl).then(
         function (response) {
-            console.log("Test: " + venue[i]);
+            console.log("Test: " + response.data[0].venue);
         });
-
+        //TODO: Not getting test data, don't have the correct path for the objects
 }
 
 function song() {
 
-    var queryUrl = "https://api.spotify.com/v1/search?query=/"
+    //TODO: Not clear about the query path for Spotify and how to incorporate the keys variable that holds and hides the keys.
+    
+    spotify.search({ type: 'track', query: 'All the Small Things' }, function(err, data) {
+        if (err) {
+          return console.log('Error occurred: ' + err);
+        }
+       
+      console.log(data.name); 
+      });  
 
+    
+        //TODO: Also, don't know understand the data structure for Spotify to console.log the objects.
 }
 
 function movie() {
@@ -88,6 +98,7 @@ function movie() {
             console.log("Title: " + response.data.Title);
             console.log("Year: " + response.data.Year);
             console.log("IMDB Rating: " + response.data.imdbRating);
+            //TODO: Correct Rotten Tomatoes Rating, not pulling the correct object.
             console.log("Rotten Tomatoes Rating: " + response.data.Ratings[1].Source.Value);
             console.log("Country of Origin: " + response.data.Country);
             console.log("Language of Movie: " + response.data.Language);
@@ -95,6 +106,7 @@ function movie() {
             console.log("Cast: " + response.data.Actors);
         });
 
+        //TODO: Need to correct this if statement to make sure if someone does not enter the movie, it returns Mr. Nobody.
         /*if (movieName === "") {
             console.log()
         }   then return movie, Mr. Nobody*/
@@ -102,6 +114,26 @@ function movie() {
 }
 
 function dowhat() {
+
+    fs.readFile("random.txt", "utf8", function (error, data) {
+
+        if (error) {
+            return console.log(error);
+        }
+        console.log(data);
+    
+        var dataArr = data.split(",");
+    
+        for (var i = 0; i < dataArr.length; i++) {
+            if ("movie-this") {
+                console.log(dataArr[2]);
+            };
+            
+        };
+    
+    //TODO: Guessing it needs to call the function of each request to run it. Also, when I try to pull each index from the array, it does not pull the correct information for each call. It has something to do with the text file.
+    
+    });
 
 
 }
