@@ -45,40 +45,64 @@ switch (userChoice) {
 console.log(userChoice);
 
 function concert() {
-    
-    var artist = "kurt vile";
+
+    var artist = "";
+
+    for (var i = 3; i < entertainName.length; i++) {
+
+        if (i > 3 && i < entertainName.length) {
+            artist = artist + "+" + entertainName[i];
+        } else {
+            artist += entertainName[i];
+
+        }
+    };
+    console.log(artist);
 
 
     var queryUrl = "https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp";
-    
+
     axios.get(queryUrl).then(
         function (response) {
             console.log(response.data[0].venue.name);
-            console.log(repsonse.data[0].description);
-        }).catch(function(err){
+            //console.log(repsonse.data[0].venue.name);
+        }).catch(function (err) {
             console.log(err);
         });
-        //TODO: Not getting test data, don't have the correct path for the objects
+    //TODO: Not getting test data, don't have the correct path for the objects
 }
 
 function song() {
 
     //TODO: Not clear about the query path for Spotify and how to incorporate the keys variable that holds and hides the keys.
-    
-    spotify.search({ type: 'track', query: 'All the Small Things' }, function(err, data) {
-        if (err) {
-          return console.log('Error occurred: ' + err);
-        }
-       
-      console.log("Artist: " + data.tracks.items[0].artists[0].name);  
-      console.log("Song Name: " + data.tracks.items[0].name);
-      console.log("Preview Song " + data.tracks.items[0].preview_url);
-      console.log("Album Name: " + data.tracks.items[0].album.name);
-      //console.log(data.tracks.items[0].artists[0].name); 
-      });  
 
-    
-        //TODO: Also, don't know understand the data structure for Spotify to console.log the objects.
+    var song = "";
+
+    for (var i = 3; i < entertainName.length; i++) {
+
+        if (i > 3 && i < entertainName.length) {
+            song = song + "+" + entertainName[i];
+        } else {
+            song += entertainName[i];
+
+        }
+    };
+
+
+    spotify.search({ type: 'track', query: song }, function (err, data) {
+        if (err) {
+            return console.log('Error occurred: ' + err);
+        }
+
+        console.log("Artist: " + data.tracks.items[0].artists[0].name);
+        console.log("Song Name: " + data.tracks.items[0].name);
+        console.log("Preview Song " + data.tracks.items[0].preview_url);
+        console.log("Album Name: " + data.tracks.items[0].album.name);
+        //console.log(data.tracks.items[0].artists[0].name); 
+    });
+
+
+    //TODO: Also, don't know understand the data structure for Spotify to console.log the objects.
 }
 
 function movie() {
@@ -93,7 +117,7 @@ function movie() {
             movieName += entertainName[i];
 
         }
-    }
+    };
     console.log(movieName);
 
     var queryUrl = "http://www.omdbapi.com/?t=" + movieName + "&y=&plot=short&apikey=trilogy";
@@ -113,10 +137,10 @@ function movie() {
             console.log("Cast: " + response.data.Actors);
         });
 
-        //TODO: Need to correct this if statement to make sure if someone does not enter the movie, it returns Mr. Nobody.
-        /*if (movieName === "") {
-            console.log()
-        }   then return movie, Mr. Nobody*/
+    //TODO: Need to correct this if statement to make sure if someone does not enter the movie, it returns Mr. Nobody.
+    /*if (movieName === "") {
+        console.log()
+    }   then return movie, Mr. Nobody*/
 
 }
 
@@ -128,18 +152,18 @@ function dowhat() {
             return console.log(error);
         }
         console.log(data);
-    
+
         var dataArr = data.split(",");
-    
-        for (var i = 0; i < dataArr.length; i++) {
+
+        /*for (var i = 0; i < dataArr.length; i++) {
             if ("movie-this") {
                 console.log(dataArr);
             };
-            
-        };
-    
-    //TODO: Guessing it needs to call the function of each request to run it. Also, when I try to pull each index from the array, it does not pull the correct information for each call. It has something to do with the text file.
-    
+
+        };*/
+
+        //TODO: Guessing it needs to call the function of each request to run it. Also, when I try to pull each index from the array, it does not pull the correct information for each call. It has something to do with the text file.
+
     });
 
 
