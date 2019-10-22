@@ -69,12 +69,12 @@ function concert() {
         }).catch(function (err) {
             console.log(err);
         });
-    //TODO: Not getting test data, don't have the correct path for the objects
+    //TODO: Still need to pull venue location and date of the event, plus use moment to format date.
 }
 
 function song() {
 
-    //TODO: Not clear about the query path for Spotify and how to incorporate the keys variable that holds and hides the keys.
+    //TODO: Sometimes preview URL doesn't have a link, comes up null, but that should be ok.
 
     var song = "";
 
@@ -102,7 +102,7 @@ function song() {
     });
 
 
-    //TODO: Also, don't know understand the data structure for Spotify to console.log the objects.
+
 }
 
 function movie() {
@@ -126,6 +126,7 @@ function movie() {
 
     axios.get(queryUrl).then(
         function (response) {
+           //TODO: Could format the console.log the way we were doing it in some of the constructor activities.
             console.log("Title: " + response.data.Title);
             console.log("Year: " + response.data.Year);
             console.log("IMDB Rating: " + response.data.imdbRating);
@@ -135,12 +136,19 @@ function movie() {
             console.log("Language of Movie: " + response.data.Language);
             console.log("Plot of Movie: " + response.data.Plot);
             console.log("Cast: " + response.data.Actors);
+
+            //TODO: Need to correct this if statement to make sure if someone does not enter the movie, it returns Mr. Nobody.
+            if (movieName === "") {
+                queryUrl = "http://www.omdbapi.com/?t=mr+nobody&y=&plot=short&apikey=trilogy";
+                movieName += queryUrl;
+                console.log(queryUrl);
+            }  
+
+
         });
 
-    //TODO: Need to correct this if statement to make sure if someone does not enter the movie, it returns Mr. Nobody.
-    /*if (movieName === "") {
-        console.log()
-    }   then return movie, Mr. Nobody*/
+    
+    
 
 }
 
@@ -162,7 +170,7 @@ function dowhat() {
 
         };*/
 
-        //TODO: Guessing it needs to call the function of each request to run it. Also, when I try to pull each index from the array, it does not pull the correct information for each call. It has something to do with the text file.
+        //TODO: Not sure what else needs to be done with this one. Maybe need to see what someone elses output looks like.
 
     });
 
