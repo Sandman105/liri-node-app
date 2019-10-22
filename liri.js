@@ -64,17 +64,18 @@ function concert() {
 
     axios.get(queryUrl).then(
         function (response) {
-            console.log(response.data[0].venue.name);
-            //console.log(repsonse.data[0].venue.name);
+            console.log("Venue Name: " + response.data[0].venue.name);
+            console.log("Venue Location: " + response.data[0].venue.city + "," + response.data[0].venue.region);
+            console.log("Date of Event: " + response.data[0].datetime);
         }).catch(function (err) {
             console.log(err);
         });
-    //TODO: Still need to pull venue location and date of the event, plus use moment to format date.
+    //TODO: Still need moment to format date.
 }
 
 function song() {
 
-    //TODO: Sometimes preview URL doesn't have a link, comes up null, but that should be ok.
+
 
     var song = "";
 
@@ -98,7 +99,7 @@ function song() {
         console.log("Song Name: " + data.tracks.items[0].name);
         console.log("Preview Song " + data.tracks.items[0].preview_url);
         console.log("Album Name: " + data.tracks.items[0].album.name);
-        //console.log(data.tracks.items[0].artists[0].name); 
+
     });
 
 
@@ -126,29 +127,33 @@ function movie() {
 
     axios.get(queryUrl).then(
         function (response) {
-           //TODO: Could format the console.log the way we were doing it in some of the constructor activities.
+            //TODO: Could format the console.log the way we were doing it in some of the constructor activities.
             console.log("Title: " + response.data.Title);
             console.log("Year: " + response.data.Year);
             console.log("IMDB Rating: " + response.data.imdbRating);
-            //TODO: Correct Rotten Tomatoes Rating, not pulling the correct object.
-            console.log("Rotten Tomatoes Rating: " + response.data.Ratings[1].Source.Value);
+            console.log("Rotten Tomatoes Rating: " + response.data.Ratings[1].Value);
             console.log("Country of Origin: " + response.data.Country);
             console.log("Language of Movie: " + response.data.Language);
             console.log("Plot of Movie: " + response.data.Plot);
             console.log("Cast: " + response.data.Actors);
 
             //TODO: Need to correct this if statement to make sure if someone does not enter the movie, it returns Mr. Nobody.
-            if (movieName === "") {
+            /*if (movieName === "") {
                 queryUrl = "http://www.omdbapi.com/?t=mr+nobody&y=&plot=short&apikey=trilogy";
                 movieName += queryUrl;
                 console.log(queryUrl);
-            }  
+            }*/
 
 
+        }).catch(function (err) {
+            queryUrl = "http://www.omdbapi.com/?t=mr+nobody&y=&plot=short&apikey=trilogy";
+            movieName += queryUrl;
+            console.log(movieName);
+            
         });
 
-    
-    
+
+
 
 }
 
@@ -159,21 +164,22 @@ function dowhat() {
         if (error) {
             return console.log(error);
         }
-        console.log(data);
 
-        var dataArr = data.split(",");
+        else {
+            song(data);
+        }
+
+        //var dataArr = data.split(",");
 
         /*for (var i = 0; i < dataArr.length; i++) {
-            if ("movie-this") {
-                console.log(dataArr);
-            };
-
-        };*/
+        
+            console.log(dataArr);
+        }*/
 
         //TODO: Not sure what else needs to be done with this one. Maybe need to see what someone elses output looks like.
 
     });
-
+    
 
 }
 
