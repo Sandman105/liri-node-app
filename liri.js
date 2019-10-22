@@ -46,14 +46,17 @@ console.log(userChoice);
 
 function concert() {
     
-    var artist = "";
+    var artist = "kurt vile";
 
 
     var queryUrl = "https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp";
     
     axios.get(queryUrl).then(
         function (response) {
-            console.log("Test: " + response.data[0].venue);
+            console.log(response.data[0].venue.name);
+            console.log(repsonse.data[0].description);
+        }).catch(function(err){
+            console.log(err);
         });
         //TODO: Not getting test data, don't have the correct path for the objects
 }
@@ -67,7 +70,11 @@ function song() {
           return console.log('Error occurred: ' + err);
         }
        
-      console.log(data.name); 
+      console.log("Artist: " + data.tracks.items[0].artists[0].name);  
+      console.log("Song Name: " + data.tracks.items[0].name);
+      console.log("Preview Song " + data.tracks.items[0].preview_url);
+      console.log("Album Name: " + data.tracks.items[0].album.name);
+      //console.log(data.tracks.items[0].artists[0].name); 
       });  
 
     
@@ -126,7 +133,7 @@ function dowhat() {
     
         for (var i = 0; i < dataArr.length; i++) {
             if ("movie-this") {
-                console.log(dataArr[2]);
+                console.log(dataArr);
             };
             
         };
