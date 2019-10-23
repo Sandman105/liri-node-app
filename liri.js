@@ -12,10 +12,12 @@ var axios = require("axios");
 
 //fs Node package, LIRI will take the text inside of random.txt and then use it to call one of LIRI's commands.
 var fs = require("fs");
+//moment Node package
+var moment = require("moment");
 
 var userChoice = process.argv[2];
 var entertainName = process.argv;
-console.log(entertainName);
+//console.log(entertainName);
 
 
 
@@ -42,7 +44,7 @@ switch (userChoice) {
         break;
 
 }
-console.log(userChoice);
+//console.log(userChoice);
 
 function concert() {
 
@@ -57,7 +59,7 @@ function concert() {
 
         }
     };
-    console.log(artist);
+    //console.log(artist);
 
 
     var queryUrl = "https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp";
@@ -119,11 +121,11 @@ function movie() {
 
         }
     };
-    console.log(movieName);
+    //console.log(movieName);
 
     var queryUrl = "http://www.omdbapi.com/?t=" + movieName + "&y=&plot=short&apikey=trilogy";
 
-    console.log(queryUrl);
+    //console.log(queryUrl);
 
     axios.get(queryUrl).then(
         function (response) {
@@ -138,19 +140,19 @@ function movie() {
             console.log("Cast: " + response.data.Actors);
 
             //TODO: Need to correct this if statement to make sure if someone does not enter the movie, it returns Mr. Nobody.
-            /*if (movieName === "") {
+            if (movieName === "") {
                 queryUrl = "http://www.omdbapi.com/?t=mr+nobody&y=&plot=short&apikey=trilogy";
                 movieName += queryUrl;
-                console.log(queryUrl);
-            }*/
+                console.log("Title: " + response.data.Title);
+            }
 
 
-        }).catch(function (err) {
+        })/*.catch(function (err) {
             queryUrl = "http://www.omdbapi.com/?t=mr+nobody&y=&plot=short&apikey=trilogy";
             movieName += queryUrl;
             console.log(movieName);
-            
-        });
+
+        });*/
 
 
 
@@ -165,9 +167,15 @@ function dowhat() {
             return console.log(error);
         }
 
-        else {
-            song(data);
+        data = data.split(", ");
+        var result = "";
+
+        for (var i = 3; i < data.length; i++) {
+            if (data[i]) {
+                result += data[i];
+            }
         }
+        console.log(result);
 
         //var dataArr = data.split(",");
 
@@ -179,7 +187,7 @@ function dowhat() {
         //TODO: Not sure what else needs to be done with this one. Maybe need to see what someone elses output looks like.
 
     });
-    
+
 
 }
 

@@ -1,0 +1,27 @@
+Concert-This
+
+~/GitHub/liri-node-app$ node liri concert-this kurt vile
+Venue Name: The Mission Ballroom
+Venue Location: Denver,CO
+Date of Event: 2019-11-06T19:00:00
+
+Spotify-This-Song
+
+~/GitHub/liri-node-app$ node liri spotify-this-song fighting the crave
+Artist: L7
+Song Name: Fighting the Crave
+Preview Song https://p.scdn.co/mp3-preview/fba0c0f1589bd754b036080c0518f8f9fe75f94f?cid=ac16005cf244400cb1245b70babf6339
+Album Name: Scatter the Rats
+
+Movie-This
+
+~/GitHub/liri-node-app$ node liri movie-this only lovers left alive
+Title: Only Lovers Left Alive
+Year: 2013
+IMDB Rating: 7.3
+Rotten Tomatoes Rating: 85%
+Country of Origin: UK, Germany, Greece, France
+Language of Movie: English, French, Arabic, Turkish
+Plot of Movie: A depressed musician reunites with his lover. Though their romance, which has already endured several centuries, is disrupted by the arrival of her uncontrollable younger sister.
+Cast: Tilda Swinton, Tom Hiddleston, Anton Yelchin, Mia Wasikowska
+
