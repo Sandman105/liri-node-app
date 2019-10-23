@@ -6,7 +6,7 @@
 <p>To use the liri-node application, simply clone the repository, and then open your terminal application to the directory the cloned repository is located. To start the application, type <strong>node liri</strong> and then use one of the three following commands, <strong>concert-this</strong> to retrieve artist/band tour information and the date and location of their next scheduled event, <strong>spotify-this-song</strong> to search for your favorite song and find out the name of the artist/band, the album and to preview the song, and <strong>movie-this</strong> to retrieve movie information, year it was released, movie plot, actors, and movie review ratings. Navigate to <a href="/liri_output_examples/liri_sample_output.txt" rel="nofollow"><strong>Liri Sample Output</strong></a> to see some output examples. Or for a screen capture of the terminal, navigate to <a href="/liri_output_examples/liri_output.mov" rel="nofollow"><strong>Liri Screen Capture.</strong></a></p>
 <br>
 <h4>Prerequisites</h4>
-<p>User will need to have <a href="https://nodejs.org/en/download/" rel="nofollow"><strong>Node.js</strong></a>installed and install the NPM packages listed in installation.</p>
+<p>User will need to have <a href="https://nodejs.org/en/download/" rel="nofollow"><strong>Node.js</strong></a> installed and install the NPM packages listed in installation.</p>
 <br>
 <h4>Installation</h4>
 <p>User will need to install the following NPM packages:</p>
