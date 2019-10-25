@@ -5,7 +5,6 @@ require("dotenv").config();
 
 var keys = require("./keys.js");
 var Spotify = require("node-spotify-api");
-//Seeing console.log "this is loaded" when running node liri.js. But had to comment this out since if caused an error.
 var spotify = new Spotify(keys.spotify);
 
 var axios = require("axios");
@@ -68,11 +67,11 @@ function concert() {
         function (response) {
             console.log("Venue Name: " + response.data[0].venue.name);
             console.log("Venue Location: " + response.data[0].venue.city + "," + response.data[0].venue.region);
-            console.log("Date of Event: " + response.data[0].datetime);
+            console.log("Date of Event: ", moment(response.data[0].datetime).format("MM/DD/YYYY"));
         }).catch(function (err) {
-            console.log(err);
+            console.log("Sorry, please enter a valid artist/band.\nAnd if your favorite artist/band isn't touring, go stream some Queens of The Stone Age on Spotify!");
         });
-    //TODO: Still need moment to format date.
+
 }
 
 function song() {
@@ -147,12 +146,28 @@ function movie() {
             }
 
 
-        })/*.catch(function (err) {
-            queryUrl = "http://www.omdbapi.com/?t=mr+nobody&y=&plot=short&apikey=trilogy";
-            movieName += queryUrl;
-            console.log(movieName);
+        }).catch(function (err) {
+            //console.log(err);
 
-        });*/
+            if (err) {
+                queryUrl = "http://www.omdbapi.com/?t=mr+nobody&y=&plot=short&apikey=trilogy";
+                
+                axios.get(queryUrl).then(
+                    function (response) {
+                        console.log("The BEST movie EVER!....from what I was told. \nWatch it on Netflix!")
+                        console.log("Title: " + response.data.Title);
+                        console.log("Year: " + response.data.Year);
+                        console.log("IMDB Rating: " + response.data.imdbRating);
+                        console.log("Rotten Tomatoes Rating: " + response.data.Ratings[1].Value);
+                        console.log("Country of Origin: " + response.data.Country);
+                        console.log("Language of Movie: " + response.data.Language);
+                        console.log("Plot of Movie: " + response.data.Plot);
+                        console.log("Cast: " + response.data.Actors);
+                    });
+                    //Just can't figure out at the moment how to remove the Title: undefined, Year: undefined, IMDB Rating: undefined when it catches the error.
+            }
+
+        });
 
 
 
@@ -167,24 +182,20 @@ function dowhat() {
             return console.log(error);
         }
 
-        data = data.split(", ");
-        var result = "";
 
-        for (var i = 3; i < data.length; i++) {
-            if (data[i]) {
-                result += data[i];
-            }
+        console.log(data);
+
+        var dataArr = data.split(", ");
+
+        console.log(dataArr);
+
+        if (data[0] === "spotify-this-song") {
+            //Not calling function, song() can't see the function unless it's outside of the if statement.
+            song(data[1]);
+            console.log(song(data[1]));
         }
-        console.log(result);
-
-        //var dataArr = data.split(",");
-
-        /*for (var i = 0; i < dataArr.length; i++) {
         
-            console.log(dataArr);
-        }*/
-
-        //TODO: Not sure what else needs to be done with this one. Maybe need to see what someone elses output looks like.
+        //TODO: do-what-it-says console.logs out spotify-this-song,"I Want it That Way", so it runs the text, but can't run the command. Maybe need to see what someone elses output looks like.
 
     });
 
