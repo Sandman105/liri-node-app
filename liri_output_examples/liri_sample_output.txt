@@ -3,7 +3,7 @@ Concert-This
 ~/GitHub/liri-node-app$ node liri concert-this kurt vile
 Venue Name: The Mission Ballroom
 Venue Location: Denver,CO
-Date of Event: 2019-11-06T19:00:00
+Date of Event:  11/06/2019
 
 Spotify-This-Song
 
